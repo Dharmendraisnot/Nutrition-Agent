@@ -1,0 +1,196 @@
+
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>NutriBot — Project Overview</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"Segoe UI",system-ui,sans-serif;font-size:14px;line-height:1.65;background:#f7f8fa;color:#1f2328;max-width:760px;margin:0 auto;padding:24px 16px 40px}
+h1{font-size:1.7rem;font-weight:800;letter-spacing:-0.5px;margin-bottom:4px}
+h2{font-size:1.05rem;font-weight:700;margin:24px 0 10px;color:#1f2328;display:flex;align-items:center;gap:7px}
+h3{font-size:.9rem;font-weight:700;margin:10px 0 5px;color:#3b82d4}
+p{color:#57606a;margin-bottom:8px;font-size:13.5px}
+code{background:#eef0f4;padding:2px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,monospace;color:#1f2328}
+pre{background:#1f2328;color:#e6edf3;border-radius:10px;padding:14px 16px;font-size:12px;overflow-x:auto;margin:10px 0;line-height:1.7}
+pre code{background:none;color:inherit;padding:0;font-size:inherit}
+.badge{display:inline-block;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:700}
+.badge-blue{background:#dbeafe;color:#1d4ed8}
+.badge-green{background:#dcfce7;color:#15803d}
+.badge-purple{background:#ede9fe;color:#6d28d9}
+.badge-orange{background:#ffedd5;color:#c2410c}
+.badge-red{background:#fee2e2;color:#b91c1c}
+
+/* Header */
+.header{background:linear-gradient(135deg,#1d4ed8,#7c3aed);border-radius:14px;padding:24px 28px;color:#fff;margin-bottom:24px}
+.header h1{color:#fff;font-size:1.9rem}
+.header p{color:rgba(255,255,255,0.82);font-size:14px;margin:6px 0 14px}
+.header-chips{display:flex;gap:8px;flex-wrap:wrap}
+.header-chip{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600}
+
+/* Section cards */
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:16px 18px;margin-bottom:14px;box-shadow:0 1px 6px rgba(0,0,0,0.05)}
+
+/* File tree */
+.file-tree{background:#1f2328;border-radius:10px;padding:14px 16px;font-family:ui-monospace,monospace;font-size:12.5px;line-height:2;color:#e6edf3}
+.ft-dir{color:#f59e0b;font-weight:700}
+.ft-file{color:#7ee787}
+.ft-comment{color:#8b949e}
+
+/* API table */
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
+th{background:#f7f8fa;padding:7px 10px;text-align:left;font-weight:600;color:#57606a;font-size:12px;border-bottom:2px solid #e5e7eb}
+td{padding:7px 10px;border-bottom:1px solid #f0f0f0;vertical-align:top}
+tr:last-child td{border-bottom:none}
+.method-get{background:#dcfce7;color:#15803d;padding:2px 7px;border-radius:5px;font-size:11px;font-weight:700;font-family:monospace}
+.method-post{background:#dbeafe;color:#1d4ed8;padding:2px 7px;border-radius:5px;font-size:11px;font-weight:700;font-family:monospace}
+
+/* Config param rows */
+.cfg-row{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;border-bottom:1px solid #f0f0f0;gap:12px;flex-wrap:wrap}
+.cfg-row:last-child{border-bottom:none}
+.cfg-key{font-family:ui-monospace,monospace;font-size:12.5px;font-weight:700;color:#1d4ed8;min-width:180px}
+.cfg-desc{color:#57606a;font-size:13px;flex:1}
+
+/* Quick start steps */
+.steps{counter-reset:step;display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.step{display:flex;gap:12px;align-items:flex-start}
+.step-num{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#8b5cf6);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.step-body strong{font-size:13.5px;font-weight:700;display:block;margin-bottom:2px}
+.step-body span{color:#57606a;font-size:13px}
+
+/* Features grid */
+.features{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.feat{background:#f7f8fa;border:1px solid #e5e7eb;border-radius:9px;padding:10px 12px}
+.feat-icon{font-size:18px;margin-bottom:4px}
+.feat-title{font-weight:700;font-size:13px;margin-bottom:2px}
+.feat-sub{font-size:12px;color:#57606a}
+
+footer{text-align:center;margin-top:32px;padding-top:16px;border-top:1px solid #e5e7eb;font-size:12px;color:#8b949e}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🥗 NutriBot</h1>
+  <p>AI-Powered Nutrition Agent · IBM Watsonx.ai + Granite Model · Flask + Bootstrap 5</p>
+  <div class="header-chips">
+    <span class="header-chip">Python Flask</span>
+    <span class="header-chip">IBM Watsonx.ai</span>
+    <span class="header-chip">Granite-13b-chat-v2</span>
+    <span class="header-chip">Bootstrap 5.3</span>
+    <span class="header-chip">Dark Mode</span>
+    <span class="header-chip">Indian Cuisine</span>
+  </div>
+</div>
+
+
+<h2>✨ Features</h2>
+<div class="features">
+  <div class="feat"><div class="feat-icon">💬</div><div class="feat-title">AI Chat Interface</div><div class="feat-sub">Granite-powered conversational nutrition assistant with typing indicators</div></div>
+  <div class="feat"><div class="feat-icon">📊</div><div class="feat-title">Nutrition Dashboard</div><div class="feat-sub">Macros, meal timing timeline, micronutrient bars, hydration tracker</div></div>
+  <div class="feat"><div class="feat-icon">📅</div><div class="feat-title">AI Meal Planner</div><div class="feat-sub">1–14 day plans with calorie targets, diet type, and allergy filters</div></div>
+  <div class="feat"><div class="feat-icon">❤️</div><div class="feat-title">BMI Calculator</div><div class="feat-sub">Mifflin-St Jeor BMR + TDEE + animated results + macro targets</div></div>
+  <div class="feat"><div class="feat-icon">👨‍👩‍👧</div><div class="feat-title">Family Profiles</div><div class="feat-sub">Multi-member management with personalised AI recommendations</div></div>
+  <div class="feat"><div class="feat-icon">🍛</div><div class="feat-title">Indian Food Focus</div><div class="feat-sub">Regional cuisines, traditional spices, festival foods, local ingredients</div></div>
+  <div class="feat"><div class="feat-icon">🌙</div><div class="feat-title">Dark Mode</div><div class="feat-sub">Full dark/light toggle with preference persistence in localStorage</div></div>
+  <div class="feat"><div class="feat-icon">📱</div><div class="feat-title">Mobile Responsive</div><div class="feat-sub">Bootstrap 5 fluid grid, works perfectly on phones and tablets</div></div>
+</div>
+
+
+<h2>📁 Project Structure</h2>
+<div class="file-tree">
+<span class="ft-dir">Nutrition Agent/</span>
+├── <span class="ft-file">app.py</span>          <span class="ft-comment">← Flask backend + AGENT_INSTRUCTIONS</span>
+├── <span class="ft-file">requirements.txt</span> <span class="ft-comment">← Python dependencies (6 packages)</span>
+├── <span class="ft-file">.env.example</span>    <span class="ft-comment">← Environment variable template</span>
+├── <span class="ft-file">.env</span>            <span class="ft-comment">← Your secrets (fill this in)</span>
+├── <span class="ft-file">README.md</span>       <span class="ft-comment">← Full documentation</span>
+├── <span class="ft-dir">templates/</span>
+│   └── <span class="ft-file">index.html</span>   <span class="ft-comment">← Main Jinja2 template (~340 lines)</span>
+└── <span class="ft-dir">static/</span>
+    ├── <span class="ft-dir">css/</span>
+    │   └── <span class="ft-file">style.css</span> <span class="ft-comment">← Custom stylesheet (~550 lines)</span>
+    └── <span class="ft-dir">js/</span>
+        └── <span class="ft-file">app.js</span>   <span class="ft-comment">← Frontend JavaScript (~370 lines)</span>
+</div>
+
+
+<h2>🚀 Quick Start</h2>
+<div class="card">
+<div class="steps">
+  <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Create virtual environment</strong><code>python -m venv venv &amp;&amp; venv\Scripts\activate</code></div></div>
+  <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Install dependencies</strong><code>pip install -r requirements.txt</code></div></div>
+  <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Copy and fill .env</strong><code>copy .env.example .env</code> → add your IBM_API_KEY + IBM_PROJECT_ID</div></div>
+  <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Run the app</strong><code>python app.py</code> → open <strong>http://localhost:5000</strong></div></div>
+</div>
+</div>
+
+
+<h2>🔑 .env Configuration</h2>
+<div class="card">
+<pre><code>IBM_API_KEY=your_ibm_cloud_api_key_here
+IBM_PROJECT_ID=your_watsonx_project_id_here
+IBM_WATSONX_URL=https://us-south.ml.cloud.ibm.com
+FLASK_SECRET_KEY=any-random-32-char-string
+FLASK_DEBUG=True
+APP_PORT=5000</code></pre>
+<p style="margin-top:8px">Get your API key at <strong>cloud.ibm.com/iam/apikeys</strong> · Get Project ID at <strong>dataplatform.cloud.ibm.com/wx/home</strong></p>
+</div>
+
+
+<h2>⚙️ AGENT_INSTRUCTIONS — Customize in app.py</h2>
+<div class="card">
+<p>Find <code>AGENT_CONFIG</code> near line 45 in <code>app.py</code>. Changes apply immediately.</p>
+<div class="cfg-row"><div class="cfg-key">AGENT_TONE</div><div class="cfg-desc"><code>"friendly"</code> | <code>"professional"</code> | <code>"motivational"</code> — controls how the bot speaks</div></div>
+<div class="cfg-row"><div class="cfg-key">AGENT_DIET_FOCUS</div><div class="cfg-desc"><code>"balanced"</code> | <code>"vegetarian"</code> | <code>"vegan"</code> | <code>"keto"</code> | <code>"diabetic"</code></div></div>
+<div class="cfg-row"><div class="cfg-key">AGENT_LANGUAGE_HINT</div><div class="cfg-desc"><code>"English"</code> or <code>"Hinglish"</code> — mix Hindi words naturally</div></div>
+<div class="cfg-row"><div class="cfg-key">AGENT_INDIAN_FOCUS</div><div class="cfg-desc"><code>True</code> / <code>False</code> — prioritise Indian recipes, regional dishes, and spices</div></div>
+<div class="cfg-row"><div class="cfg-key">AGENT_SAFETY_RULES</div><div class="cfg-desc">List of hard rules always enforced — e.g. no extreme deficits, advise doctor, etc.</div></div>
+<div class="cfg-row"><div class="cfg-key">MODEL_ID</div><div class="cfg-desc"><code>"ibm/granite-13b-chat-v2"</code> — swap to any available Granite model</div></div>
+<div class="cfg-row"><div class="cfg-key">GEN_PARAMS.temperature</div><div class="cfg-desc"><code>0.0</code>–<code>1.0</code> — lower = factual, higher = creative. Default: <code>0.7</code></div></div>
+<div class="cfg-row"><div class="cfg-key">GEN_PARAMS.max_new_tokens</div><div class="cfg-desc">Max tokens per response. Default: <code>900</code>. Increase for longer plans.</div></div>
+</div>
+
+
+<h2>🌐 API Endpoints</h2>
+<div class="card" style="padding:0;overflow:hidden">
+<table>
+  <tr><th>Method</th><th>Route</th><th>Description</th></tr>
+  <tr><td><span class="method-get">GET</span></td><td><code>/</code></td><td>Main web application</td></tr>
+  <tr><td><span class="method-post">POST</span></td><td><code>/api/chat</code></td><td>AI chat — body: <code>{"message": "..."}</code></td></tr>
+  <tr><td><span class="method-post">POST</span></td><td><code>/api/bmi</code></td><td>BMI + TDEE — weight, height, age, gender, activity</td></tr>
+  <tr><td><span class="method-post">POST</span></td><td><code>/api/meal-plan</code></td><td>Generate AI meal plan — calories, diet_type, days, goal</td></tr>
+  <tr><td><span class="method-post">POST</span></td><td><code>/api/analyze-meal</code></td><td>Nutritional breakdown of a meal description</td></tr>
+  <tr><td><span class="method-post">POST</span></td><td><code>/api/family-profile</code></td><td>Save family members + get AI summary</td></tr>
+  <tr><td><span class="method-get">GET</span></td><td><code>/api/family-profiles</code></td><td>Retrieve saved family profiles from session</td></tr>
+  <tr><td><span class="method-post">POST</span></td><td><code>/api/clear-chat</code></td><td>Clear conversation history</td></tr>
+  <tr><td><span class="method-get">GET</span></td><td><code>/api/status</code></td><td>App status, demo mode flag, model info</td></tr>
+</table>
+</div>
+
+
+<h2>🧪 Demo Mode</h2>
+<div class="card">
+  <p>When <code>IBM_API_KEY</code> or <code>IBM_PROJECT_ID</code> are not set, the app runs in <strong>Demo Mode</strong> automatically. A yellow banner is shown. Pre-written intelligent responses cover BMI, breakfast ideas, calorie questions, and meal plans. All UI features (BMI calculator, dashboard, family profiles) work normally.</p>
+</div>
+
+
+<h2>📦 Dependencies (requirements.txt)</h2>
+<div class="card">
+<table>
+  <tr><th>Package</th><th>Version</th><th>Purpose</th></tr>
+  <tr><td><code>flask</code></td><td>3.0.3</td><td>Web framework + routing</td></tr>
+  <tr><td><code>flask-session</code></td><td>0.8.0</td><td>Server-side session management</td></tr>
+  <tr><td><code>python-dotenv</code></td><td>1.0.1</td><td>Load .env secrets securely</td></tr>
+  <tr><td><code>ibm-watsonx-ai</code></td><td>1.1.2</td><td>IBM Watsonx.ai + Granite SDK</td></tr>
+  <tr><td><code>requests</code></td><td>2.32.3</td><td>HTTP client</td></tr>
+  <tr><td><code>gunicorn</code></td><td>22.0.0</td><td>Production WSGI server</td></tr>
+</table>
+</div>
+
+<footer>
+  <strong>NutriBot</strong> · IBM Watsonx.ai Nutrition Agent · Flask + Bootstrap 5<br />
+  Made with IBM Bob
+</footer>
+</body>
+</html>
